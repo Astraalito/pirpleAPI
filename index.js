@@ -29,7 +29,7 @@ var httpsServerOptions = {
 };
 var httpsServer = new https.createServer(httpsServerOptions, function (req, res) {
     unifiedServer(req, res);
-})
+});
 
 // Start the HTTPS server
 httpsServer.listen(config.httpsPort, function () {
@@ -97,7 +97,7 @@ var unifiedServer = function (req, res) {
             console.log('Returning this response : ', statusCode, payloadString);
         });
     });
-}
+};
 
 // Define the handlers
 var handlers = {};
