@@ -13,9 +13,8 @@ var config = require('./config');
 var fs = require('fs');
 
 // Instanciating the HTTP server
-var httpServer = new http.createServer(function (req, res) {
-    unifiedServer(req, res);
-});
+
+var httpServer = http.createServer(req, res => unifiedServer(req, res));
 
 // Start the server
 httpServer.listen(config.httpPort, function () {
@@ -27,9 +26,8 @@ var httpsServerOptions = {
     'key': fs.readFileSync('./https/key.pem'),
     'cert': fs.readFileSync('./https/cert.pem')
 };
-var httpsServer = new https.createServer(httpsServerOptions, function (req, res) {
-    unifiedServer(req, res);
-});
+
+var httpsServer = https.createServer(httpsServerOptions, (req, res) => unifiedServer(req,res));
 
 // Start the HTTPS server
 httpsServer.listen(config.httpsPort, function () {
