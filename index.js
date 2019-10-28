@@ -17,9 +17,8 @@ var fs = require('fs');
 var httpServer = http.createServer((req, res) => unifiedServer(req, res));
 
 // Start the server
-httpServer.listen(config.httpPort, function () {
-    console.log('The HTTP server is listening on port ' + config.httpPort + ' in ' + config.envName + ' mode');
-});
+
+httpServer.listen(config.httpPort, () => console.log('The HTTP server is listening on port ' + config.httpPort + ' in ' + config.envName + ' mode'));
 
 // Instanciate the HTTPS server
 var httpsServerOptions = {
@@ -56,9 +55,9 @@ var unifiedServer = function (req, res) {
     // Get the payload, if any Send the response
     var decoder = new StringDecoder('utf-8');
     var buffer = '';
-    req.on('data', function (data) {
-        buffer += decoder.write(data);
-    });
+
+    req.on('data', (data) => buffer += decoder.write(data));
+
     req.on('end', function () {
         buffer += decoder.end();
 
