@@ -18,7 +18,7 @@ var httpServer = http.createServer((req, res) => unifiedServer(req, res));
 
 // Start the server
 
-httpServer.listen(config.httpPort, () => console.log('The HTTP server is listening on port ' + config.httpPort + ' in ' + config.envName + ' mode'));
+httpServer.listen(config.httpPort, () => console.log(`The HTTP server is listening on port ` + config.httpPort + ` in ` + config.envName + ` mode`));
 
 // Instanciate the HTTPS server
 var httpsServerOptions = {
