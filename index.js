@@ -14,7 +14,7 @@ var fs = require('fs');
 
 // Instanciating the HTTP server
 
-var httpServer = http.createServer(req, res => unifiedServer(req, res));
+var httpServer = http.createServer((req, res) => unifiedServer(req, res));
 
 // Start the server
 httpServer.listen(config.httpPort, function () {
@@ -30,9 +30,10 @@ var httpsServerOptions = {
 var httpsServer = https.createServer(httpsServerOptions, (req, res) => unifiedServer(req,res));
 
 // Start the HTTPS server
-httpsServer.listen(config.httpsPort, function () {
-    console.log('The HTTPS server is listening on port ' + config.httpsPort + ' in ' + config.envName + ' mode');
-});
+
+
+httpsServer.listen(config.httpsPort, () => console.log('The HTTPS server is listening on port ' + config.httpsPort + ' in ' + config.envName + ' mode'));
+
 
 // All the server logic for both http and https server
 var unifiedServer = function (req, res) {
@@ -101,14 +102,12 @@ var unifiedServer = function (req, res) {
 var handlers = {};
 
 // Ping handler
-handlers.ping = function (data, callback) {
-    callback(200);
-};
+
+handlers.ping = ((data, callback) => callback(200));
 
 // Not found handler
-handlers.notFound = function (data, callback) {
-    callback(404);
-};
+
+handlers.notFound = ((data, callback) => callback(404));
 
 
 // Define a request router
